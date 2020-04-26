@@ -1,0 +1,29 @@
+{{define "layout"}}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{template "title"}}</title>
+        <link rel="stylesheet" href="/static/stylesheets/main.css">
+        <script src="/static/js/load-db.js"></script>
+    </head>
+    <body>
+        {{template "body"}}
+        <button type="button" onclick="loadDatabase()">View Database</button>
+        {{ block "neighbors" . }}
+        <div id="neighbors">
+            <table>
+                {{ range . }}
+                <tr>
+                    <th>{{ .IpAddr }}</th>
+                    <th>{{ .MacAddr }}</th>
+                    <th>{{ .Oui }}</th>
+                </tr>
+                {{ end }}
+            </table>
+        </div>
+        {{ end }}
+        <footer>Made with Go</footer>
+    </body>
+</html>
+{{end}}
